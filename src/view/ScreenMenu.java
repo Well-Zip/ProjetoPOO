@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import model.dao.UsuarioLoginDao;
 
 
@@ -24,7 +26,14 @@ import model.dao.UsuarioLoginDao;
 public class ScreenMenu extends javax.swing.JFrame {
     
     
+    //public static boolean isInternalFrameOpen;
+    public static boolean isInternalFrameOpen = false;
 
+    
+
+    
+    
+    
     /**
      * Creates new form ScreenMenu
      */
@@ -70,6 +79,28 @@ public class ScreenMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("O choro é livre");
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setIconifiable(true);
@@ -154,7 +185,7 @@ public class ScreenMenu extends javax.swing.JFrame {
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntrar)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -173,7 +204,7 @@ public class ScreenMenu extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(201, 201, 201)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(801, Short.MAX_VALUE))
+                .addContainerGap(789, Short.MAX_VALUE))
         );
 
         menu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
@@ -294,11 +325,15 @@ public class ScreenMenu extends javax.swing.JFrame {
         menu1.setVisible(true);
         menu2.setVisible(true);
         jInternalFrame1.setVisible(false);
+        
         this.setTitle("O choro é livre - Usuario : " + txtUser.getText());
+        
     
     }
     else{
+        
         JOptionPane.showMessageDialog(null, "Credencias de login invalida","Login",0);
+        txtPass.setText("");
     }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -320,15 +355,37 @@ public class ScreenMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Dimension desktopSize = jDesktopPane1.getSize();
-        System.out.println(desktopSize.width);
-        System.out.println(desktopSize.height);
         
-        ScreenBaseCadastro cadastro = new ScreenBaseCadastro();
-        jDesktopPane1.add(cadastro);
-        cadastro.setSize(desktopSize.width, desktopSize.height);
-        cadastro.setVisible(true);
+        if (isInternalFrameOpen == false) {
+            Dimension desktopSize = jDesktopPane1.getSize();
+            ScreenBaseCadastro cadastro = new ScreenBaseCadastro();
+            jDesktopPane1.add(cadastro);
+            cadastro.setSize(desktopSize.width, desktopSize.height);
+            cadastro.setVisible(true);
+            
+            this.isInternalFrameOpen = true;
+        }
+        
+       
+        
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        
+    }//GEN-LAST:event_formFocusGained
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
