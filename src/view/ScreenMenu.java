@@ -185,7 +185,7 @@ public class ScreenMenu extends javax.swing.JFrame {
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntrar)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -220,9 +220,19 @@ public class ScreenMenu extends javax.swing.JFrame {
         menu1.add(jMenuItem1);
 
         jMenuItem2.setText("Fornecedor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menu1.add(jMenuItem2);
 
         jMenuItem3.setText("Cliente");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menu1.add(jMenuItem3);
 
         jMenuBar1.add(menu1);
@@ -321,19 +331,23 @@ public class ScreenMenu extends javax.swing.JFrame {
 //            jInternalFrame1.setVisible(false);
 //        }
     UsuarioLoginDao dao = new UsuarioLoginDao();
-    if (dao.checkLogin(txtUser.getText(), txtPass.getText())){
-        menu1.setVisible(true);
-        menu2.setVisible(true);
-        jInternalFrame1.setVisible(false);
-        
-        this.setTitle("O choro é livre - Usuario : " + txtUser.getText());
-        
-    
+    try{
+        if (dao.checkLogin(txtUser.getText(), txtPass.getText())){
+            menu1.setVisible(true);
+            menu2.setVisible(true);
+            jInternalFrame1.setVisible(false);
+            if (dao.getADM().equalsIgnoreCase("0")){
+                jMenuItem1.setEnabled(false);
+            };
+            this.setTitle("O choro é livre - Usuario : " + txtUser.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "Credencias de login invalida","Login",0);
+            txtPass.setText("");
+        }
     }
-    else{
-        
-        JOptionPane.showMessageDialog(null, "Credencias de login invalida","Login",0);
-        txtPass.setText("");
+    catch (Exception e){
+        JOptionPane.showMessageDialog(null, "Erro de Conexão","Login",0);
+    
     }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -358,10 +372,10 @@ public class ScreenMenu extends javax.swing.JFrame {
         
         if (isInternalFrameOpen == false) {
             Dimension desktopSize = jDesktopPane1.getSize();
-            ScreenBaseCadastro cadastro = new ScreenBaseCadastro();
-            jDesktopPane1.add(cadastro);
-            cadastro.setSize(desktopSize.width, desktopSize.height);
-            cadastro.setVisible(true);
+            ScreenUsuarios usuario = new ScreenUsuarios();
+            jDesktopPane1.add(usuario);
+            usuario.setSize(desktopSize.width, desktopSize.height);
+            usuario.setVisible(true);
             
             this.isInternalFrameOpen = true;
         }
@@ -386,6 +400,31 @@ public class ScreenMenu extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         
     }//GEN-LAST:event_formComponentShown
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+            
+        if (isInternalFrameOpen == false) {
+            Dimension desktopSize = jDesktopPane1.getSize();
+            ScreenFornecedor fornecedor = new ScreenFornecedor();
+            jDesktopPane1.add(fornecedor);
+            fornecedor.setSize(desktopSize.width, desktopSize.height);
+            fornecedor.setVisible(true);
+            
+            this.isInternalFrameOpen = true;
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         if (isInternalFrameOpen == false) {
+            Dimension desktopSize = jDesktopPane1.getSize();
+            ScreenCliente cliente = new ScreenCliente();
+            jDesktopPane1.add(cliente);
+            cliente.setSize(desktopSize.width, desktopSize.height);
+            cliente.setVisible(true);
+            
+            this.isInternalFrameOpen = true;
+        }    
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

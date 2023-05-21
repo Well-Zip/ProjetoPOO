@@ -18,6 +18,16 @@ import java.util.logging.Logger;
  * @author Samuelson
  */
 public class UsuarioLoginDao {
+    
+    private String ADM;
+
+    public String getADM() {
+        return ADM;
+    }
+
+    public void setADM(String ADM) {
+        this.ADM = ADM;
+    }
 
     public boolean checkLogin(String login, String senha) {
 
@@ -36,6 +46,7 @@ public class UsuarioLoginDao {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
+                setADM(rs.getString("super"));
 
                 
                 check = true;

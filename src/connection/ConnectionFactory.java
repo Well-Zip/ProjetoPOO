@@ -14,19 +14,19 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    /*
-    
+   
+     /*
     private static final String URL = "jdbc:mysql://localhost:3306/computaria";
     private static final String USER = "root";
     private static final String PASS = "";
     
-
-    */
-
+     /*
+    
+     */
     private static final String URL = "jdbc:mysql://containers-us-west-49.railway.app:7956/railway";
     private static final String USER = "root";
     private static final String PASS = "QqMm8Sl6sGdaifDFAYnV";
-    
+   
 
     public static Connection getConnection() {
         try {
