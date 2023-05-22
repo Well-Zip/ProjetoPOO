@@ -25,8 +25,6 @@ public class FornecedorDAO {
             stmt.setString(2, f.getNome_fantasia());
             stmt.setString(3, f.getCnpj());
             stmt.setString(4, f.getEndereco());
-            
-            
             stmt.setString(5, f.getNumero ());
             stmt.setString(6, f.getBairro());
             stmt.setString(7, f.getComplemento());
@@ -56,7 +54,7 @@ public class FornecedorDAO {
         List<Fornecedor> fornecedores = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM fornecedores");
+            stmt = con.prepareStatement("SELECT * FROM fornecedores ORDER BY idfornecedor ASC");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -83,7 +81,82 @@ public class FornecedorDAO {
         return fornecedores;
 
     }
-    public List<Fornecedor> readForDesc(String fantasia) {
+    
+    //Buscar Com filtro
+    
+    public List<Fornecedor> readRazaoSocial(String razaoS) {
+
+        Connection con = ConnectionFactory.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Fornecedor> fornecedores = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM fornecedores WHERE razao_social  LIKE ?");
+            stmt.setString(1, razaoS+"%");
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Fornecedor fornecedor = new Fornecedor();
+
+                fornecedor.setId(rs.getInt("idfornecedor"));
+                fornecedor.setRazao_social(rs.getString("razao_social"));
+                fornecedor.setNome_fantasia(rs.getString("nome_fantasia"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+                fornecedores.add(fornecedor);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return fornecedores;
+
+    }
+    
+    public List<Fornecedor> readCNPJ(String cnpj) {
+
+        Connection con = ConnectionFactory.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Fornecedor> fornecedores = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM fornecedores WHERE cnpj LIKE ?");
+            stmt.setString(1, cnpj+"%");
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Fornecedor fornecedor = new Fornecedor();
+
+                fornecedor.setId(rs.getInt("idfornecedor"));
+                fornecedor.setRazao_social(rs.getString("razao_social"));
+                fornecedor.setNome_fantasia(rs.getString("nome_fantasia"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+                fornecedores.add(fornecedor);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return fornecedores;
+
+    }
+    
+    public List<Fornecedor> readFantasia(String fantasia) {
 
         Connection con = ConnectionFactory.getConnection();
         
@@ -118,7 +191,7 @@ public class FornecedorDAO {
         return fornecedores;
 
     }
-
+    
     public void update(Fornecedor f) {
 
         Connection con = ConnectionFactory.getConnection();

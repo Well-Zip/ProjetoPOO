@@ -294,7 +294,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton18">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Corsim"/>
+        <Property name="text" type="java.lang.String" value="Alterar Cor"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>

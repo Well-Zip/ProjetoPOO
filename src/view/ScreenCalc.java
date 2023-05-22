@@ -3,6 +3,7 @@ package view;
 
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -225,7 +226,7 @@ public class ScreenCalc extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setText("Corsim");
+        jButton18.setText("Alterar Cor");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -508,10 +509,24 @@ String str;
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         JColorChooser colorChooser = new JColorChooser();
-        JOptionPane.showOptionDialog(null, colorChooser, "Escolha uma cor", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
-        this.getContentPane().setBackground(colorChooser.getColor());
-        PopUpCoringou coringou = new PopUpCoringou();
-        coringou.setVisible(true);
+        String[] options = {"Corsim", "Cornao"};
+            
+        int op = JOptionPane.showOptionDialog(null,colorChooser, "Escolha uma cor",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            
+        //JOptionPane.showOptionDialog(null, colorChooser, "Escolha uma cor", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+        if(op == 0){
+            this.getContentPane().setBackground(colorChooser.getColor());
+                int tempoExibicao = 400; //400 milissegundos = 0.4 segundos
+                PopUpCoringou coringou = new PopUpCoringou();
+                coringou.setVisible(true);
+                Timer timer = new Timer(tempoExibicao, e -> {
+                    coringou.dispose();
+                });
+                timer.setRepeats(false); // Executar apenas uma vez
+                timer.start();
+                
+                
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
 
     /**

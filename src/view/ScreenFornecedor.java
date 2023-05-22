@@ -52,13 +52,51 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     }
     
-    public void readJTableForDesc(String fantasia) {
+    public void readJTableRazaoSocial(String razaoS) {
         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
         FornecedorDAO fdao = new FornecedorDAO();
 
-        for (Fornecedor f : fdao.readForDesc(fantasia)) {
+        for (Fornecedor f : fdao.readRazaoSocial(razaoS)) {
+
+            modelo.addRow(new Object[]{
+                f.getId(),
+                f.getRazao_social(),
+                f.getNome_fantasia(),
+                f.getCnpj()
+            });
+
+        }
+
+    }
+    
+    public void readJTableCNPJ(String cnpj) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        FornecedorDAO fdao = new FornecedorDAO();
+
+        for (Fornecedor f : fdao.readCNPJ(cnpj)) {
+
+            modelo.addRow(new Object[]{
+                f.getId(),
+                f.getRazao_social(),
+                f.getNome_fantasia(),
+                f.getCnpj()
+            });
+
+        }
+
+    }
+    
+    public void readJTableFantasia(String fantasia) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        FornecedorDAO fdao = new FornecedorDAO();
+
+        for (Fornecedor f : fdao.readFantasia(fantasia)) {
 
             modelo.addRow(new Object[]{
                 f.getId(),
@@ -80,6 +118,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/background_fornecedor.png"));
         Image image = icon.getImage();
         jPanel1 = new javax.swing.JPanel(){
@@ -92,35 +131,40 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtRazaoS = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtFantasia = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtCNPJ = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtComplemento = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtCidade = new javax.swing.JTextField();
+        ComboEstado = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtCep = new javax.swing.JFormattedTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         setClosable(true);
+        setTitle("Fornecedor");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -151,45 +195,54 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Nome Fantasia");
         jInternalFrame2.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 100, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
-        jInternalFrame2.getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
+        jInternalFrame2.getContentPane().add(txtRazaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
+        jInternalFrame2.getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 123, 551, -1));
+        jInternalFrame2.getContentPane().add(txtFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 123, 551, -1));
 
         jLabel6.setText("CNPJ");
         jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 50, -1, -1));
 
         jLabel7.setText("Endereço ");
         jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 158, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
+        jInternalFrame2.getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
 
         jLabel8.setText("Numero");
         jInternalFrame2.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 158, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 71, 249, -1));
+        jInternalFrame2.getContentPane().add(txtCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 71, 249, -1));
 
         jLabel9.setText("Bairro ");
         jInternalFrame2.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 216, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
+        jInternalFrame2.getContentPane().add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
 
         jLabel10.setText("Complemento");
         jInternalFrame2.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 216, 85, -1));
-        jInternalFrame2.getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
+        jInternalFrame2.getContentPane().add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
 
         jLabel11.setText("Estado ");
-        jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 271, 91, -1));
+        jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 91, -1));
 
         jLabel12.setText("Cidade");
         jInternalFrame2.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 268, 85, 22));
 
         jLabel13.setText("CEP ");
-        jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 271, 43, -1));
-        jInternalFrame2.getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 297, 231, -1));
-        jInternalFrame2.getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 210, -1));
+        jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 43, -1));
+        jInternalFrame2.getContentPane().add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 260, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jInternalFrame2.getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 297, -1, -1));
+        ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jInternalFrame2.getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         jButton1.setText("Fechar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jInternalFrame2.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
 
         jButton3.setText("Salvar");
@@ -199,6 +252,14 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+
+        try {
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCep.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jInternalFrame2.getContentPane().add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 160, -1));
 
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
@@ -217,6 +278,9 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
             }
         });
         jPanel1.add(jTextField1);
@@ -256,7 +320,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Numero Interno", "Razão Social", "Nome Fantasia", "CNPJ"
+                "Nº Interno", "Razão Social", "Nome Fantasia", "CNPJ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -274,6 +338,49 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(80, 230, 870, 290);
+
+        jPanel3.setBackground(new java.awt.Color(23, 23, 23));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setText("CNPJ");
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("Nome Fantasia");
+
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setSelected(true);
+        jRadioButton3.setText("Razão Social");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(590, 120, 360, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,7 +407,19 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jInternalFrame2.setTitle("Adicionar - Fornecedor"); 
+        txtRazaoS.setText("");
+        txtCNPJ.setText("");
+        txtFantasia.setText("");
+        txtEndereco.setText("");
+        txtNumero.setText("");
+        txtBairro.setText("");
+        txtComplemento.setText("");
+        txtCidade.setText("");
+        ComboEstado.setSelectedItem("PI");
+        txtCep.setText("");
+        
         jInternalFrame2.setVisible(true);
+        
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -311,24 +430,64 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        //Verificar se vai adicionar ou atualizar informação
+        if(jInternalFrame2.getTitle().equalsIgnoreCase("Adicionar - Fornecedor")){
+             Fornecedor f = new Fornecedor();
+             FornecedorDAO dao = new FornecedorDAO();
+
+            f.setRazao_social(txtRazaoS.getText());
+            f.setCnpj(txtCNPJ.getText());
+            f.setNome_fantasia(txtFantasia.getText());
+            f.setEndereco(txtEndereco.getText());
+            f.setNumero(txtNumero.getText());
+            f.setBairro(txtBairro.getText());
+            f.setComplemento(txtComplemento.getText());
+            f.setCidade(txtCidade.getText());
+            f.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
+            f.setCep(txtCep.getText());
+            dao.create(f);
+
+            txtRazaoS.setText("");
+            txtCNPJ.setText("");
+            txtFantasia.setText("");
+            txtEndereco.setText("");
+            txtNumero.setText("");
+            txtBairro.setText("");
+            txtComplemento.setText("");
+            txtCidade.setText("");
+            ComboEstado.setSelectedItem("PI");
+            txtCep.setText("");
+
+        readJTable();
+   
+        
+        }
+        
+        if(jInternalFrame2.getTitle().equalsIgnoreCase("Editar - Fornecedor")){ 
+        
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         
-        readJTableForDesc(jTextField1.getText());
+        
+        
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
         if (jTable1.getSelectedRow() != -1) {
-
+            
             Fornecedor f = new Fornecedor();
             FornecedorDAO dao = new FornecedorDAO();
-
+            
             f.setId((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+            
             String[] options = {"Sim", "Não"};
-       
+            
             int delete = JOptionPane.showOptionDialog(null, "Tem certeza que deseja deletar esse fornecedor?","Pensa bem",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            
             if(delete == 0){
                 dao.delete(f); 
             }
@@ -344,14 +503,39 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        jInternalFrame2.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        //KEY RELEASE
+        if (jRadioButton3.isSelected()){ //Buscar por Razão Social
+        readJTableRazaoSocial(jTextField1.getText());
+        }
+        
+        if (jRadioButton2.isSelected()){ //Buscar por CNPJ
+        readJTableCNPJ(jTextField1.getText());
+        }
+        
+        
+        if (jRadioButton1.isSelected()){
+        readJTableFantasia(jTextField1.getText());
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboEstado;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -365,17 +549,21 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCNPJ;
+    private javax.swing.JFormattedTextField txtCep;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtFantasia;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtRazaoS;
     // End of variables declaration//GEN-END:variables
 }

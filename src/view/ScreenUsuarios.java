@@ -48,6 +48,8 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -56,6 +58,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Usuarios");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -86,15 +89,29 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jInternalFrame2.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
 
-        jLabel6.setText("Senha");
-        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jLabel6.setText("Confirmação de Senha");
+        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jButton1.setText("Fechar");
-        jInternalFrame2.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jInternalFrame2.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         jButton3.setText("Salvar");
-        jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-        jInternalFrame2.getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jInternalFrame2.getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, -1));
+        jInternalFrame2.getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
+
+        jLabel7.setText("Senha");
+        jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
@@ -111,7 +128,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(100, 240, 870, 95);
+        jTextField1.setBounds(70, 150, 870, 70);
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -120,11 +137,11 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(680, 830, 290, 70);
+        jButton2.setBounds(650, 550, 290, 70);
 
         jButton5.setText("Remover");
         jPanel1.add(jButton5);
-        jButton5.setBounds(390, 830, 270, 70);
+        jButton5.setBounds(360, 550, 270, 70);
 
         jButton6.setText("Adicionar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -133,42 +150,13 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(100, 830, 270, 70);
+        jButton6.setBounds(70, 550, 270, 70);
 
         jTable1.setBackground(new java.awt.Color(110, 105, 212));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Numero Interno", "Nome de Usuario"
@@ -188,7 +176,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(100, 360, 870, 420);
+        jScrollPane2.setBounds(70, 230, 870, 310);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,7 +194,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jInternalFrame2.setTitle("Editar - Usuarios"); 
-        jInternalFrame2.setSize(276,183);
+        jInternalFrame2.setSize(276,250);
         jInternalFrame2.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -216,15 +204,23 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jInternalFrame2.setTitle("Adicionar - Usuarios"); 
-        jInternalFrame2.setSize(276,183);
+        jInternalFrame2.setSize(276,250);
         jInternalFrame2.setVisible(true);
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
-        //PCB NOVAS TECNICAS 
+        
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jInternalFrame2.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,8 +233,10 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
