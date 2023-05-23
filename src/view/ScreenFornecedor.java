@@ -108,6 +108,9 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         }
 
     }
+    
+  
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,6 +155,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtCep = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -188,30 +192,48 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jInternalFrame2.setClosable(true);
         jInternalFrame2.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jInternalFrame2.setVisible(false);
+        jInternalFrame2.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                jInternalFrame2InternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Razão Social ");
+        jLabel2.setText("Razão Social*");
         jInternalFrame2.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 50, -1, -1));
 
-        jLabel4.setText("Nome Fantasia");
+        jLabel4.setText("Nome Fantasia*");
         jInternalFrame2.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 100, -1, -1));
         jInternalFrame2.getContentPane().add(txtRazaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
         jInternalFrame2.getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
         jInternalFrame2.getContentPane().add(txtFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 123, 551, -1));
 
-        jLabel6.setText("CNPJ");
-        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 50, -1, -1));
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("* Campo Obrigatoriio");
+        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
-        jLabel7.setText("Endereço ");
+        jLabel7.setText("Endereço* ");
         jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 158, -1, -1));
         jInternalFrame2.getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
 
-        jLabel8.setText("Numero");
+        jLabel8.setText("Numero*");
         jInternalFrame2.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 158, -1, -1));
         jInternalFrame2.getContentPane().add(txtCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 71, 249, -1));
 
-        jLabel9.setText("Bairro ");
+        jLabel9.setText("Bairro* ");
         jInternalFrame2.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 216, -1, -1));
         jInternalFrame2.getContentPane().add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
 
@@ -219,14 +241,14 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jInternalFrame2.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 216, 85, -1));
         jInternalFrame2.getContentPane().add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
 
-        jLabel11.setText("Estado ");
+        jLabel11.setText("Estado*");
         jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 91, -1));
 
-        jLabel12.setText("Cidade");
+        jLabel12.setText("Cidade*");
         jInternalFrame2.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 268, 85, 22));
 
-        jLabel13.setText("CEP ");
-        jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 43, -1));
+        jLabel13.setText("CEP*");
+        jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 43, -1));
         jInternalFrame2.getContentPane().add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 260, -1));
 
         ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
@@ -260,6 +282,9 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         }
         txtCep.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jInternalFrame2.getContentPane().add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 160, -1));
+
+        jLabel14.setText("CNPJ*");
+        jInternalFrame2.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 50, -1, -1));
 
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
@@ -397,8 +422,47 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jInternalFrame2.setTitle("Editar - Fornecedor"); 
-        jInternalFrame2.setVisible(true);
+        if (jTable1.getSelectedRow() != -1) {
+
+            
+            int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            
+            FornecedorDAO fdao = new FornecedorDAO();
+
+            for (Fornecedor f : fdao.readonylID(valueID)) {
+
+                
+                    
+                    txtRazaoS.setText(f.getRazao_social());
+                    txtCNPJ.setText(f.getCnpj());
+                    txtFantasia.setText(f.getNome_fantasia());
+                    txtEndereco.setText(f.getEndereco());
+                    txtNumero.setText(f.getNumero());
+                    txtBairro.setText(f.getBairro());
+                    txtComplemento.setText(f.getComplemento());
+                    txtCidade.setText(f.getCidade());
+                    ComboEstado.setSelectedItem(f.getEstado());
+                    txtCep.setText(f.getCep());
+                    
+
+            }
+            
+            
+            
+            
+            jInternalFrame2.setTitle("Editar - Fornecedor"); 
+        
+            jInternalFrame2.setVisible(true);
+            jButton6.setEnabled(false);
+            jButton5.setEnabled(false);
+            jButton2.setEnabled(false);
+            //readJTable();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um fornecedor que deseja editar");
+        }
+
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -406,6 +470,9 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jButton6.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton2.setEnabled(false);
         jInternalFrame2.setTitle("Adicionar - Fornecedor"); 
         txtRazaoS.setText("");
         txtCNPJ.setText("");
@@ -431,39 +498,80 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Verificar se vai adicionar ou atualizar informação
+        
         if(jInternalFrame2.getTitle().equalsIgnoreCase("Adicionar - Fornecedor")){
-             Fornecedor f = new Fornecedor();
-             FornecedorDAO dao = new FornecedorDAO();
+            Fornecedor f = new Fornecedor();
+            FornecedorDAO dao = new FornecedorDAO();
+            if(txtRazaoS.getText().isEmpty() || txtCNPJ.getText().isEmpty() || txtFantasia.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumero.getText().isEmpty()
+            || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty() || txtCep.getText().equalsIgnoreCase("     -   ")){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                
+            }else{
+                f.setRazao_social(txtRazaoS.getText());
+                f.setCnpj(txtCNPJ.getText());
+                f.setNome_fantasia(txtFantasia.getText());
+                f.setEndereco(txtEndereco.getText());
+                f.setNumero(txtNumero.getText());
+                f.setBairro(txtBairro.getText());
+                f.setComplemento(txtComplemento.getText());
+                f.setCidade(txtCidade.getText());
+                f.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
+                f.setCep(txtCep.getText());
+                dao.create(f);
 
-            f.setRazao_social(txtRazaoS.getText());
-            f.setCnpj(txtCNPJ.getText());
-            f.setNome_fantasia(txtFantasia.getText());
-            f.setEndereco(txtEndereco.getText());
-            f.setNumero(txtNumero.getText());
-            f.setBairro(txtBairro.getText());
-            f.setComplemento(txtComplemento.getText());
-            f.setCidade(txtCidade.getText());
-            f.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
-            f.setCep(txtCep.getText());
-            dao.create(f);
+                txtRazaoS.setText("");
+                txtCNPJ.setText("");
+                txtFantasia.setText("");
+                txtEndereco.setText("");
+                txtNumero.setText("");
+                txtBairro.setText("");
+                txtComplemento.setText("");
+                txtCidade.setText("");
+                ComboEstado.setSelectedItem("PI");
+                txtCep.setText("");
 
-            txtRazaoS.setText("");
-            txtCNPJ.setText("");
-            txtFantasia.setText("");
-            txtEndereco.setText("");
-            txtNumero.setText("");
-            txtBairro.setText("");
-            txtComplemento.setText("");
-            txtCidade.setText("");
-            ComboEstado.setSelectedItem("PI");
-            txtCep.setText("");
-
-        readJTable();
-   
+                readJTable();
+                
+            
+            }
         
         }
         
-        if(jInternalFrame2.getTitle().equalsIgnoreCase("Editar - Fornecedor")){ 
+        if(jInternalFrame2.getTitle().equalsIgnoreCase("Editar - Fornecedor")){
+            if(txtRazaoS.getText().isEmpty() || txtCNPJ.getText().isEmpty() || txtFantasia.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumero.getText().isEmpty()
+            || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty() || txtCep.getText().equalsIgnoreCase("     -   ")){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                
+            }else{
+                int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+
+                Fornecedor f = new Fornecedor();
+                FornecedorDAO dao = new FornecedorDAO();
+
+                
+
+
+
+                f.setRazao_social(txtRazaoS.getText());
+                f.setCnpj(txtCNPJ.getText());
+                f.setNome_fantasia(txtFantasia.getText());
+                f.setEndereco(txtEndereco.getText());
+                f.setNumero(txtNumero.getText());
+                f.setBairro(txtBairro.getText());
+                f.setComplemento(txtComplemento.getText());
+                f.setCidade(txtCidade.getText());
+                f.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
+                f.setCep(txtCep.getText());
+                f.setId(valueID);
+                dao.update(f);
+                
+                
+            }
+
+            
+            
         
         }
         
@@ -508,7 +616,11 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true); //Botão Fechar
+        jButton6.setEnabled(true);
+        readJTable();
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
@@ -527,6 +639,15 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTextField1KeyReleased
 
+    private void jInternalFrame2InternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jInternalFrame2InternalFrameClosing
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton6.setEnabled(true);
+        readJTable();
+        
+        
+    }//GEN-LAST:event_jInternalFrame2InternalFrameClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboEstado;
@@ -541,6 +662,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -190,7 +190,61 @@ public class FornecedorDAO {
 
         return fornecedores;
 
+   
+
     }
+    
+    //BLOCO TESTE
+    public List<Fornecedor> readonylID(int id) {
+
+        Connection con = ConnectionFactory.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Fornecedor> fornecedores = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM fornecedores WHERE idfornecedor = ?");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Fornecedor fornecedor = new Fornecedor();
+                
+                
+
+                fornecedor.setId(rs.getInt("idfornecedor"));
+                fornecedor.setRazao_social(rs.getString("razao_social"));
+                fornecedor.setNome_fantasia(rs.getString("nome_fantasia"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+                fornecedor.setEndereco(rs.getString("endereco"));
+                fornecedor.setNumero(rs.getString("numero"));
+                fornecedor.setBairro(rs.getString("bairro"));
+                fornecedor.setComplemento(rs.getString("complemento"));
+                
+                fornecedor.setCidade(rs.getString("cidade"));
+                fornecedor.setEstado(rs.getString("estado"));
+                fornecedor.setCep(rs.getString("cep"));
+                
+                fornecedores.add(fornecedor);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return fornecedores;
+
+   
+
+    }
+   
+    //FIM BLOCO
     
     public void update(Fornecedor f) {
 
@@ -211,6 +265,7 @@ public class FornecedorDAO {
             stmt.setString(8, f.getCidade());
             stmt.setString(9, f.getEstado());
             stmt.setString(10, f.getCep());
+            stmt.setInt(11, f.getId());
 
             stmt.executeUpdate();
 
