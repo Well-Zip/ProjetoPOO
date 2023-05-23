@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Fornecedor;
 import model.dao.FornecedorDAO;
+import model.dao.UsuarioLoginDao;
 
 
 /**
@@ -357,6 +358,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setCellSelectionEnabled(true);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
@@ -585,30 +587,36 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        if (jTable1.getSelectedRow() != -1) {
-            
-            Fornecedor f = new Fornecedor();
-            FornecedorDAO dao = new FornecedorDAO();
-            
-            f.setId((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-            
-            String[] options = {"Sim", "Não"};
-            
-            int delete = JOptionPane.showOptionDialog(null, "Tem certeza que deseja deletar esse fornecedor?","Pensa bem",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            
-            if(delete == 0){
-                dao.delete(f); 
-            }
-                
+        System.out.println(ScreenMenu.isADM);
+        if(ScreenMenu.isADM.equalsIgnoreCase("1")){
+            if (jTable1.getSelectedRow() != -1) {
 
+                Fornecedor f = new Fornecedor();
+                FornecedorDAO dao = new FornecedorDAO();
+
+                f.setId((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+
+                String[] options = {"Sim", "Não"};
+
+                int delete = JOptionPane.showOptionDialog(null, "Tem certeza que deseja deletar esse fornecedor?","Pensa bem",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+                if(delete == 0){
+                    dao.delete(f); 
+                }
+
+
+
+
+                readJTable();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um fornecedor para excluir.");}
             
-
-            readJTable();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um fornecedor para excluir.");
+        }else{
+            JOptionPane.showMessageDialog(null, "O usuario não tem permissão para deletar. Contate o ADM ");
         }
-
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

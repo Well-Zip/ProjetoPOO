@@ -28,6 +28,7 @@ public class ScreenMenu extends javax.swing.JFrame {
     
     //public static boolean isInternalFrameOpen;
     public static boolean isInternalFrameOpen = false;
+    public static String isADM = "0";
 
     
 
@@ -337,8 +338,12 @@ public class ScreenMenu extends javax.swing.JFrame {
             menu2.setVisible(true);
             jInternalFrame1.setVisible(false);
             if (dao.getADM().equalsIgnoreCase("0")){
+                this.isADM = "0";
                 jMenuItem1.setEnabled(false);
-            };
+            }
+            else{
+               this.isADM = "1";   
+            }
             this.setTitle("O choro é livre - Usuario : " + txtUser.getText());
         }else{
             JOptionPane.showMessageDialog(null, "Credencias de login invalida","Login",0);
