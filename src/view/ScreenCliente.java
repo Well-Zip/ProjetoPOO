@@ -8,6 +8,11 @@ package view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.bean.Cliente;
+import model.dao.ClienteDAO;
 import model.dao.UsuarioLoginDao;
 
 
@@ -22,6 +27,87 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
      */
     public ScreenCliente() {
         initComponents();
+        initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowSorter(new TableRowSorter(modelo));
+
+        readJTable();
+    }
+    
+    public void readJTable() {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cdao = new ClienteDAO();
+
+        for (Cliente c : cdao.read()) {
+
+            modelo.addRow(new Object[]{
+                c.getIdcliente(),
+                c.getNome(),
+                c.getSobrenome(),
+                c.getCpf_cnpj()
+            });
+
+        }
+
+    }
+    
+    public void readJTableNome(String nome) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cdao = new ClienteDAO();
+
+        for (Cliente c : cdao.readNome(nome)) {
+
+            modelo.addRow(new Object[]{
+                c.getIdcliente(),
+                c.getNome(),
+                c.getSobrenome(),
+                c.getCpf_cnpj()
+            });
+
+        }
+
+    }
+    
+    public void readJTableSobrenome(String sobrenome) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cdao = new ClienteDAO();
+
+        for (Cliente c : cdao.readSobrenome(sobrenome)) {
+
+            modelo.addRow(new Object[]{
+                c.getIdcliente(),
+                c.getNome(),
+                c.getSobrenome(),
+                c.getCpf_cnpj()
+            });
+
+        }
+
+    }
+    
+    public void readJTableCPF_CNPJ(String cpf_cnpj) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cdao = new ClienteDAO();
+
+        for (Cliente c : cdao.readCPF_CNPJ(cpf_cnpj)) {
+
+            modelo.addRow(new Object[]{
+                c.getIdcliente(),
+                c.getNome(),
+                c.getSobrenome(),
+                c.getCpf_cnpj()
+            });
+
+        }
+
     }
     
     /**
@@ -47,29 +133,29 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtComplemento = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtCidade = new javax.swing.JTextField();
+        ComboEstado = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        txtCPF_CNPJ = new javax.swing.JTextField();
+        txtSobrenome = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtCep = new javax.swing.JFormattedTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -106,6 +192,23 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         jInternalFrame2.setClosable(true);
         jInternalFrame2.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jInternalFrame2.setVisible(false);
+        jInternalFrame2.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                jInternalFrame2InternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nome");
@@ -113,8 +216,8 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
 
         jLabel4.setText("CPF / CNPJ");
         jInternalFrame2.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 100, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
-        jInternalFrame2.getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
+        jInternalFrame2.getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
+        jInternalFrame2.getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
 
         jLabel6.setText("Sobrenome");
@@ -122,37 +225,37 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Endereço ");
         jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 158, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
+        jInternalFrame2.getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
 
         jLabel8.setText("Numero");
         jInternalFrame2.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 158, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 249, -1));
+        jInternalFrame2.getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 249, -1));
 
         jLabel9.setText("Bairro ");
         jInternalFrame2.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 216, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
+        jInternalFrame2.getContentPane().add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
 
         jLabel10.setText("Complemento");
         jInternalFrame2.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 216, 85, -1));
-        jInternalFrame2.getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
+        jInternalFrame2.getContentPane().add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
 
         jLabel11.setText("Estado ");
-        jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 271, 91, -1));
+        jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 50, -1));
 
         jLabel12.setText("Cidade");
         jInternalFrame2.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 268, 85, 22));
 
         jLabel13.setText("CEP ");
         jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 271, 43, -1));
-        jInternalFrame2.getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 210, -1));
+        jInternalFrame2.getContentPane().add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 210, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        ComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                ComboEstadoActionPerformed(evt);
             }
         });
-        jInternalFrame2.getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 297, -1, -1));
+        jInternalFrame2.getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 297, -1, -1));
 
         jButton1.setText("Fechar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,19 +272,19 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
             }
         });
         jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 123, 260, -1));
-        jInternalFrame2.getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 249, -1));
+        jInternalFrame2.getContentPane().add(txtCPF_CNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 123, 260, -1));
+        jInternalFrame2.getContentPane().add(txtSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 249, -1));
 
         jLabel14.setText("Telefone");
         jInternalFrame2.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jInternalFrame2.getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 160, -1));
+        txtCep.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jInternalFrame2.getContentPane().add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 160, -1));
 
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
@@ -197,9 +300,17 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
                 jTextField1InputMethodTextChanged(evt);
             }
         });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
             }
         });
         jPanel1.add(jTextField1);
@@ -215,6 +326,11 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         jButton2.setBounds(660, 550, 290, 70);
 
         jButton5.setText("Remover");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
         jButton5.setBounds(370, 550, 270, 70);
 
@@ -311,8 +427,46 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jInternalFrame2.setTitle("Editar - Cliente"); 
-        jInternalFrame2.setVisible(true);
+        if (jTable1.getSelectedRow() != -1) {
+
+            
+            int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            
+            ClienteDAO cdao = new ClienteDAO();
+
+            for (Cliente c : cdao.readonylID(valueID)) {
+
+                    
+                    
+                    txtNome.setText(c.getNome());
+                    txtSobrenome.setText(c.getSobrenome());
+                    txtCPF_CNPJ.setText(c.getCpf_cnpj());
+                    txtTelefone.setText(c.getTelefone());
+                    txtEndereco.setText(c.getEndereco());
+                    txtNumero.setText(c.getNumero());
+                    txtBairro.setText(c.getBairro());
+                    txtComplemento.setText(c.getComplemento());
+                    txtCidade.setText(c.getCidade());
+                    ComboEstado.setSelectedItem(c.getEstado());
+                    txtCep.setText(c.getCep());
+                    
+
+            }
+            
+            
+            
+            
+            jInternalFrame2.setTitle("Editar - Cliente"); 
+        
+            jInternalFrame2.setVisible(true);
+            jButton6.setEnabled(false);
+            jButton5.setEnabled(false);
+            jButton2.setEnabled(false);
+            //readJTable();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um cliente que deseja editar");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -320,7 +474,22 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jButton6.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton2.setEnabled(false);
         jInternalFrame2.setTitle("Adicionar - Cliente"); 
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtCPF_CNPJ.setText("");
+        txtTelefone.setText("");
+        txtEndereco.setText("");
+        txtNumero.setText("");
+        txtBairro.setText("");
+        txtComplemento.setText("");
+        txtCidade.setText("");
+        ComboEstado.setSelectedItem("PI");
+        txtCep.setText("");
+        
         jInternalFrame2.setVisible(true);
         
         
@@ -330,32 +499,178 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         //PCB NOVAS TECNICAS 
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void ComboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_ComboEstadoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    if(jInternalFrame2.getTitle().equalsIgnoreCase("Adicionar - Cliente")){
+            System.out.println("TESTE 31");
+            Cliente c = new Cliente();
+            System.out.println("TESTE 32");
+            ClienteDAO dao = new ClienteDAO();
+            System.out.println("TESTE 33");
+            if(txtNome.getText().isEmpty() || txtSobrenome.getText().isEmpty() || txtCPF_CNPJ.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumero.getText().isEmpty()
+            || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty() || txtCep.getText().equalsIgnoreCase("     -   ")){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                System.out.println("TESTE");
+                
+            }else{
+                System.out.println("TESTE 1");
+                c.setNome(txtNome.getText());
+                c.setSobrenome(txtSobrenome.getText());
+                c.setCpf_cnpj(txtCPF_CNPJ.getText());
+                c.setTelefone(txtTelefone.getText());
+                c.setEndereco(txtEndereco.getText());
+                c.setNumero(txtNumero.getText());
+                c.setBairro(txtBairro.getText());
+                c.setComplemento(txtComplemento.getText());
+                c.setCidade(txtCidade.getText());
+                c.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
+                c.setCep(txtCep.getText());
+                System.out.println("TESTE2");
+                dao.create(c);
+                System.out.println("TESTE 3");
+
+                txtNome.setText("");
+                txtSobrenome.setText("");
+                txtCPF_CNPJ.setText("");
+                txtTelefone.setText("");
+                txtEndereco.setText("");
+                txtNumero.setText("");
+                txtBairro.setText("");
+                txtComplemento.setText("");
+                txtCidade.setText("");
+                ComboEstado.setSelectedItem("PI");
+                txtCep.setText("");
+
+                readJTable();
+                
+            
+            }
         
+        }
+        
+        if(jInternalFrame2.getTitle().equalsIgnoreCase("Editar - Cliente")){
+            if(txtNome.getText().isEmpty() || txtSobrenome.getText().isEmpty() || txtCPF_CNPJ.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumero.getText().isEmpty()
+            || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty() || txtCep.getText().equalsIgnoreCase("     -   ")){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                
+            }else{
+                int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+
+                Cliente c = new Cliente();
+                ClienteDAO dao = new ClienteDAO();
+
+                
+
+
+
+                c.setNome(txtNome.getText());
+                c.setSobrenome(txtSobrenome.getText());
+                c.setCpf_cnpj(txtCPF_CNPJ.getText());
+                c.setTelefone(txtTelefone.getText());
+                c.setEndereco(txtEndereco.getText());
+                c.setNumero(txtNumero.getText());
+                c.setBairro(txtBairro.getText());
+                c.setComplemento(txtComplemento.getText());
+                c.setCidade(txtCidade.getText());
+                c.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
+                c.setCep(txtCep.getText());
+                c.setIdcliente(valueID);
+                dao.update(c);
+                
+                
+            }
+
+            
+            
+        
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true); //Botão Fechar
+        jButton6.setEnabled(true);
         jInternalFrame2.setVisible(false);
+        readJTable();
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1KeyPressed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if (jRadioButton3.isSelected()){ //Buscar por Razão Social
+        readJTableNome(jTextField1.getText());
+        }
+        
+        if (jRadioButton2.isSelected()){ //Buscar por CNPJ
+        readJTableSobrenome(jTextField1.getText());
+        }
+        
+        
+        if (jRadioButton1.isSelected()){
+        readJTableCPF_CNPJ(jTextField1.getText());
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(ScreenMenu.isADM.equalsIgnoreCase("1")){
+            if (jTable1.getSelectedRow() != -1) {
+
+                Cliente c = new Cliente();
+                ClienteDAO dao = new ClienteDAO();
+
+                c.setIdcliente((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+
+                String[] options = {"Sim", "Não"};
+
+                int delete = JOptionPane.showOptionDialog(null, "Tem certeza que deseja deletar esse cliente?","Pensa bem",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+                if(delete == 0){
+                    dao.delete(c); 
+                }
+
+
+
+
+                readJTable();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");}
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "O usuario não tem permissão para deletar. Contate o ADM ");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jInternalFrame2InternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jInternalFrame2InternalFrameClosing
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true); //Botão Fechar
+        jButton6.setEnabled(true);
+        
+        readJTable();
+        jTextField1.setText("");
+    }//GEN-LAST:event_jInternalFrame2InternalFrameClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboEstado;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -377,14 +692,15 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCPF_CNPJ;
+    private javax.swing.JFormattedTextField txtCep;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtSobrenome;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

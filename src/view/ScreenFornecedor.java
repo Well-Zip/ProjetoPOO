@@ -587,7 +587,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        System.out.println(ScreenMenu.isADM);
+        
         if(ScreenMenu.isADM.equalsIgnoreCase("1")){
             if (jTable1.getSelectedRow() != -1) {
 
@@ -627,6 +627,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jButton5.setEnabled(true);
         jButton2.setEnabled(true); //Botão Fechar
         jButton6.setEnabled(true);
+        jInternalFrame2.setVisible(false);
         readJTable();
         jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
