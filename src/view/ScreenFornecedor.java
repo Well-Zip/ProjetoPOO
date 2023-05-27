@@ -310,7 +310,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(80, 150, 870, 60);
+        jTextField1.setBounds(80, 170, 870, 60);
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -319,7 +319,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(660, 540, 290, 70);
+        jButton2.setBounds(660, 590, 290, 70);
 
         jButton5.setText("Remover");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -328,7 +328,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(370, 540, 270, 70);
+        jButton5.setBounds(370, 590, 270, 70);
 
         jButton6.setText("Adicionar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -337,7 +337,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(80, 540, 270, 70);
+        jButton6.setBounds(80, 590, 270, 70);
 
         jTable1.setBackground(new java.awt.Color(110, 105, 212));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -364,7 +364,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(80, 230, 870, 290);
+        jScrollPane2.setBounds(80, 240, 870, 330);
 
         jPanel3.setBackground(new java.awt.Color(23, 23, 23));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,7 +407,7 @@ public class ScreenFornecedor extends javax.swing.JInternalFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(590, 120, 360, 40);
+        jPanel3.setBounds(590, 140, 360, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

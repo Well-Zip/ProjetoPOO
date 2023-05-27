@@ -121,7 +121,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/background_fornecedor.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/background_cliente.png"));
         Image image = icon.getImage();
         jPanel1 = new javax.swing.JPanel(){
 
@@ -156,6 +156,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         txtSobrenome = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtCep = new javax.swing.JFormattedTextField();
+        jLabel15 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -211,27 +212,28 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         });
         jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Nome*");
         jInternalFrame2.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 50, -1, -1));
 
-        jLabel4.setText("CPF / CNPJ");
+        jLabel4.setText("CPF/CNPJ*");
         jInternalFrame2.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 100, -1, -1));
         jInternalFrame2.getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 71, 264, -1));
         jInternalFrame2.getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 181, 110, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
 
-        jLabel6.setText("Sobrenome");
-        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("*Campos Obrigatorios");
+        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
-        jLabel7.setText("Endereço ");
+        jLabel7.setText("Endereço*");
         jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 158, -1, -1));
         jInternalFrame2.getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 181, 423, -1));
 
-        jLabel8.setText("Numero");
+        jLabel8.setText("Numero*");
         jInternalFrame2.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 158, -1, -1));
         jInternalFrame2.getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 249, -1));
 
-        jLabel9.setText("Bairro ");
+        jLabel9.setText("Bairro*");
         jInternalFrame2.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 216, -1, -1));
         jInternalFrame2.getContentPane().add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 239, 240, -1));
 
@@ -239,13 +241,13 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         jInternalFrame2.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 216, 85, -1));
         jInternalFrame2.getContentPane().add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 239, 293, -1));
 
-        jLabel11.setText("Estado ");
+        jLabel11.setText("Estado *");
         jInternalFrame2.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 50, -1));
 
-        jLabel12.setText("Cidade");
+        jLabel12.setText("Cidade*");
         jInternalFrame2.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 268, 85, 22));
 
-        jLabel13.setText("CEP ");
+        jLabel13.setText("CEP*");
         jInternalFrame2.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 271, 43, -1));
         jInternalFrame2.getContentPane().add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 297, 210, -1));
 
@@ -286,6 +288,9 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         txtCep.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jInternalFrame2.getContentPane().add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 160, -1));
 
+        jLabel15.setText("Sobrenome*");
+        jInternalFrame2.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
 
@@ -314,7 +319,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(80, 150, 870, 60);
+        jTextField1.setBounds(80, 170, 870, 60);
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +328,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(660, 550, 290, 70);
+        jButton2.setBounds(660, 590, 290, 70);
 
         jButton5.setText("Remover");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -332,7 +337,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(370, 550, 270, 70);
+        jButton5.setBounds(370, 590, 270, 70);
 
         jButton6.setText("Adicionar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -341,7 +346,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(80, 550, 270, 70);
+        jButton6.setBounds(80, 590, 270, 70);
 
         jTable1.setBackground(new java.awt.Color(110, 105, 212));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -367,7 +372,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(80, 220, 870, 310);
+        jScrollPane2.setBounds(80, 240, 870, 320);
 
         jPanel3.setBackground(new java.awt.Color(23, 23, 23));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,7 +415,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(590, 120, 360, 40);
+        jPanel3.setBounds(590, 140, 360, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -420,7 +425,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
 
         pack();
@@ -677,6 +682,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
