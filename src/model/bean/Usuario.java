@@ -13,6 +13,15 @@ public class Usuario {
     private int iduser;
     private String usuario;
     private String senha;
+    private int usuper;
+
+    public int getUsuper() {
+        return usuper;
+    }
+
+    public void setUsuper(int usuper) {
+        this.usuper = usuper;
+    }
 
     public int getIduser() {
         return iduser;

@@ -8,6 +8,11 @@ package view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.bean.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -20,7 +25,61 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
      */
     public ScreenUsuarios() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowSorter(new TableRowSorter(modelo));
+
+        readJTable();
     }
+    
+    public void readJTable() {
+        String getSuper;
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        UsuarioDAO udao = new UsuarioDAO();
+        
+        for (Usuario u : udao.read()) {
+            if (u.getUsuper() == 1){
+                getSuper = "Sim";
+            }
+            else{
+                getSuper = "Não";
+            }
+            
+            modelo.addRow(new Object[]{
+                u.getIduser(),
+                u.getUsuario(),
+                getSuper,
+                
+            });
+
+        }
+
+    }
+    public void readJTableNome(String nome) {
+        String getSuper;
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        UsuarioDAO udao = new UsuarioDAO();
+
+        for (Usuario u : udao.readNome(nome)) {
+            if (u.getUsuper() == 1){
+                getSuper = "Sim";
+            }
+            else{
+                getSuper = "Não";
+            }
+
+            modelo.addRow(new Object[]{
+                u.getIduser(),
+                u.getUsuario(),
+                getSuper,
+                
+            });
+
+        }
+
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +90,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/background_fornecedor.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/background_usuario.png"));
         Image image = icon.getImage();
         jPanel1 = new javax.swing.JPanel(){
 
@@ -42,14 +101,14 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         };
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtPass = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -82,15 +141,30 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jInternalFrame2.setClosable(true);
         jInternalFrame2.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jInternalFrame2.setVisible(false);
+        jInternalFrame2.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                jInternalFrame2InternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                jInternalFrame2InternalFrameDeactivated(evt);
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nome");
         jInternalFrame2.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-        jInternalFrame2.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
+        jInternalFrame2.getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
         jInternalFrame2.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 100, -1, -1));
-
-        jLabel6.setText("Confirmação de Senha");
-        jInternalFrame2.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jButton1.setText("Fechar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,12 +180,17 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
-        jInternalFrame2.getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, -1));
-        jInternalFrame2.getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
+        jInternalFrame2.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 20));
+        jInternalFrame2.getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
 
         jLabel7.setText("Senha");
         jInternalFrame2.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
+        jInternalFrame2.getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, -1));
+
+        jLabel1.setText("Permissão de ADM?");
+        jInternalFrame2.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, -1));
 
         jPanel1.add(jInternalFrame2);
         jInternalFrame2.setBounds(270, 40, 660, 410);
@@ -127,8 +206,13 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
                 jTextField1InputMethodTextChanged(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(70, 150, 870, 70);
+        jTextField1.setBounds(70, 160, 870, 70);
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -137,11 +221,16 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(650, 550, 290, 70);
+        jButton2.setBounds(650, 600, 290, 70);
 
         jButton5.setText("Remover");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
-        jButton5.setBounds(360, 550, 270, 70);
+        jButton5.setBounds(360, 600, 270, 70);
 
         jButton6.setText("Adicionar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +239,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(70, 550, 270, 70);
+        jButton6.setBounds(70, 600, 270, 70);
 
         jTable1.setBackground(new java.awt.Color(110, 105, 212));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -159,11 +248,11 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Numero Interno", "Nome de Usuario"
+                "Numero Interno", "Nome de Usuario", "Permissão ADM"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -176,7 +265,7 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(70, 230, 870, 310);
+        jScrollPane2.setBounds(70, 240, 870, 310);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,9 +282,45 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jInternalFrame2.setTitle("Editar - Usuarios"); 
-        jInternalFrame2.setSize(276,250);
-        jInternalFrame2.setVisible(true);
+        if (jTable1.getSelectedRow() != -1) {
+
+            
+            int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            
+            UsuarioDAO udao = new UsuarioDAO();
+
+            for (Usuario u : udao.readonylID(valueID)) {
+
+                    
+                    
+                    txtNome.setText(u.getUsuario());
+                    txtPass.setText(u.getSenha());
+                    if(u.getUsuper()==1){
+                        jComboBox1.setSelectedItem("Sim");
+                    }else{
+                        jComboBox1.setSelectedItem("Não");
+                    
+                    }
+                    
+                    
+                    
+
+            }
+            
+            
+            
+            
+            jInternalFrame2.setTitle("Editar - Usuario"); 
+        
+            jInternalFrame2.setVisible(true);
+            jButton6.setEnabled(false);
+            jButton5.setEnabled(false);
+            jButton2.setEnabled(false);
+            //readJTable();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um usuario que deseja editar");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -203,8 +328,14 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jInternalFrame2.setTitle("Adicionar - Usuarios"); 
-        jInternalFrame2.setSize(276,250);
+        jButton6.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton2.setEnabled(false);
+        jInternalFrame2.setTitle("Adicionar - Usuario"); 
+        txtNome.setText("");
+        txtPass.setText("");
+        
+        
         jInternalFrame2.setVisible(true);
         
         
@@ -215,12 +346,139 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1InputMethodTextChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true); //Botão Fechar
+        jButton6.setEnabled(true);
         jInternalFrame2.setVisible(false);
+        readJTable();
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+         if(jInternalFrame2.getTitle().equalsIgnoreCase("Adicionar - Usuario")){
+            
+            Usuario u = new Usuario();
+            
+            UsuarioDAO udao = new UsuarioDAO();
+            
+            if(txtNome.getText().isEmpty() || txtPass.getText().isEmpty()){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                
+                
+            }else{
+                
+                u.setUsuario(txtNome.getText());
+                u.setSenha(txtPass.getText());
+               
+                if(jComboBox1.getSelectedItem()=="Sim"){
+                    u.setUsuper(1);
+                }else{
+                    u.setUsuper(0);
+                }
+                
+                
+                
+                
+                
+                udao.create(u);
+                
+                
+                txtNome.setText("");
+                txtPass.setText("");
+                
+
+                readJTable();
+                
+            
+            }
+        
+        }
+        
+        if(jInternalFrame2.getTitle().equalsIgnoreCase("Editar - Usuario")){
+            if(txtNome.getText().isEmpty() || txtPass.getText().isEmpty()){
+                
+                JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
+                
+            }else{
+                int valueID  = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+
+                Usuario u = new Usuario();
+                UsuarioDAO udao = new UsuarioDAO();
+
+                
+
+
+
+                u.setUsuario(txtNome.getText());
+                u.setSenha(txtPass.getText());
+                
+                
+                
+                if(jComboBox1.getSelectedItem()=="Sim"){
+                    u.setUsuper(1);
+                }else{
+                    u.setUsuper(0);
+                }
+                
+                u.setIduser(valueID);
+                udao.update(u);
+                
+                
+            }
+
+            
+            
+        
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        readJTableNome(jTextField1.getText());
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jInternalFrame2InternalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jInternalFrame2InternalFrameDeactivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jInternalFrame2InternalFrameDeactivated
+
+    private void jInternalFrame2InternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jInternalFrame2InternalFrameClosing
+        jButton5.setEnabled(true);
+        jButton2.setEnabled(true); //Botão Fechar
+        jButton6.setEnabled(true);
+        jInternalFrame2.setVisible(false);
+        readJTable();
+        jTextField1.setText("");
+    }//GEN-LAST:event_jInternalFrame2InternalFrameClosing
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(ScreenMenu.isADM.equalsIgnoreCase("1")){
+            if (jTable1.getSelectedRow() != -1) {
+
+                Usuario u = new Usuario();
+                UsuarioDAO udao = new UsuarioDAO();
+
+                u.setIduser((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+
+                String[] options = {"Sim", "Não"};
+
+                int delete = JOptionPane.showOptionDialog(null, "Tem certeza que deseja deletar esse cliente?","Pensa bem",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+                if(delete == 0){
+                    udao.delete(u); 
+                }
+
+
+
+
+                readJTable();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um usuario para excluir.");}
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "O usuario não tem permissão para deletar. Contate o ADM ");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,17 +487,17 @@ public class ScreenUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

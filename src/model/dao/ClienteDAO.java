@@ -233,7 +233,7 @@ public class ClienteDAO {
                 cliente.setNome(rs.getString("nome"));
                 cliente.setSobrenome(rs.getString("sobrenome"));
                 cliente.setCpf_cnpj(rs.getString("cpf_cnpj"));
-                cliente.setEndereco(rs.getString("telefone"));
+                cliente.setTelefone(rs.getString("telefone"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setNumero(rs.getString("numero"));
                 cliente.setBairro(rs.getString("bairro"));

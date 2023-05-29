@@ -390,11 +390,12 @@ public class ScreenMenu extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // Abrir Calculadora
-        ScreenCalc calculadora = new ScreenCalc();
-        calculadora.setSize(360,500);
-        calculadora.setVisible(true);
-        this.isInternalFrameOpen = true;
-        
+        if (isInternalFrameOpen == false) {
+            ScreenCalc calculadora = new ScreenCalc();
+            calculadora.setSize(360,500);
+            calculadora.setVisible(true);
+            this.isInternalFrameOpen = true;
+        } 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

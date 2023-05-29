@@ -27,7 +27,7 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
      */
     public ScreenCliente() {
         initComponents();
-        initComponents();
+        
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         jTable1.setRowSorter(new TableRowSorter(modelo));
 
@@ -510,19 +510,19 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     if(jInternalFrame2.getTitle().equalsIgnoreCase("Adicionar - Cliente")){
-            System.out.println("TESTE 31");
+            
             Cliente c = new Cliente();
-            System.out.println("TESTE 32");
+            
             ClienteDAO dao = new ClienteDAO();
-            System.out.println("TESTE 33");
+            
             if(txtNome.getText().isEmpty() || txtSobrenome.getText().isEmpty() || txtCPF_CNPJ.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumero.getText().isEmpty()
             || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty() || txtCep.getText().equalsIgnoreCase("     -   ")){
                 
                 JOptionPane.showMessageDialog(null, "Campos Obrigatorios não preenchidos");
-                System.out.println("TESTE");
+                
                 
             }else{
-                System.out.println("TESTE 1");
+                
                 c.setNome(txtNome.getText());
                 c.setSobrenome(txtSobrenome.getText());
                 c.setCpf_cnpj(txtCPF_CNPJ.getText());
@@ -534,9 +534,9 @@ public class ScreenCliente extends javax.swing.JInternalFrame {
                 c.setCidade(txtCidade.getText());
                 c.setEstado(String.valueOf(ComboEstado.getSelectedItem()));
                 c.setCep(txtCep.getText());
-                System.out.println("TESTE2");
+                
                 dao.create(c);
-                System.out.println("TESTE 3");
+                
 
                 txtNome.setText("");
                 txtSobrenome.setText("");
